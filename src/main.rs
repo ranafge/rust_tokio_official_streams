@@ -72,6 +72,8 @@ async fn main() -> mini_redis::Result<()> {
     }
 }
 
+// need to know more details about stream!
+
 struct Delay {
     when: Instant,
 }
