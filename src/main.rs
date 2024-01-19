@@ -59,6 +59,17 @@ async fn main() -> mini_redis::Result<()> {
     println!("DONE");
 
     Ok(())
+
+    stream!{
+        let mut when = Instant::now();
+    
+        for _ in 0..3 {
+            let delay = Delay{when};
+            delay.await;
+            yield();
+            when += Duration::from_micros(10);
+        }
+    }
 }
 
 struct Delay {
@@ -110,3 +121,8 @@ impl Stream for Interval {
         }
     }
 }
+
+
+use async_stream::stream;
+
+
